@@ -50,7 +50,7 @@ bool WebPHandler::read ( QImage * image ){
 		size_t output_size = result.byteCount();
 		if(WebPDecodeBGRAInto((const uint8_t*)data.constData(), data.size(), output, output_size, result.bytesPerLine())) {
 			*image = result;
-			return true
+			return true;
 		}
 	}
 
