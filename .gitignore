@@ -1,2 +1,12 @@
 *.o
 *moc_*
+*.obj
+*.rc
+*.manifest
+mt.dep
+*.res
+*.vcproj
+*.exe
+*.user
+*.pdb
+*.idb

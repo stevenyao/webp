@@ -29,12 +29,27 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include <QImageIOHandler>
 
+class WebPHandlerPrivate;
 class WebPHandler : public QImageIOHandler
 {
 public:
-    WebPHandler();
+	WebPHandler();
+	~WebPHandler();
+
+public:
+	QByteArray name() const;
+
     bool canRead () const;
     bool read ( QImage * image );
+
+public:
+	bool write(const QImage &image);
+	QVariant option(ImageOption option) const;
+	void setOption(ImageOption option, const QVariant &value);
+	bool supportsOption(ImageOption option) const;
+
+private:
+	WebPHandlerPrivate *d;
 };
 
 #endif // WEBPHANDLER_H

@@ -42,23 +42,25 @@ WebpPlugin::WebpPlugin(QObject *parent) :
 {
 }
 
-WebpPlugin::Capabilities WebpPlugin::capabilities ( QIODevice * device, const QByteArray & format ) const{
+WebpPlugin::Capabilities WebpPlugin::capabilities ( QIODevice * device, const QByteArray & format ) const {
+	Q_UNUSED(device);
+
     if(format == "webp"){
-        return Capabilities(CanRead);
+        return Capabilities(CanRead | CanWrite);
     }
-    return Capabilities();
-    
+    return Capabilities();    
 }
-QImageIOHandler * WebpPlugin::create( QIODevice * device, const QByteArray & format) const{
+
+QImageIOHandler * WebpPlugin::create( QIODevice * device, const QByteArray & format) const {
     QImageIOHandler *handler = new WebPHandler;
     handler->setDevice(device);
     handler->setFormat(format);
     return handler;
 }
-QStringList WebpPlugin::keys () const{
+
+QStringList WebpPlugin::keys () const {
     return QStringList() << QLatin1String("webp");
 }
-
 
 Q_EXPORT_STATIC_PLUGIN(WebpPlugin)
 Q_EXPORT_PLUGIN2(webp, WebpPlugin)

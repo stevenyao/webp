@@ -3,15 +3,20 @@ include(../../qpluginbase.pri)
 
 QMAKE_LFLAGS_RELEASE += /BASE:0x67C00000
 
-WEBP_PATH = libwebp/src/
+CONFIG(debug, debug)
+{
+	LIBS += webplibs/libwebp_debug.lib
+}
+
+CONFIG(release, release)
+{
+	LIBS += webplibs/libwebp.lib
+}
 
 INCLUDEPATH = libwebp/src/
 SOURCES += \
     webpioplugin.cpp \
     webphandler.cpp \
-    $$files($$WEBP_PATH/dec/*.c)\
-    $$files($$WEBP_PATH/utils/*.c) \
-    $$files($$WEBP_PATH/dsp/*.c)
    
 HEADERS += \
     webphandler.h
